@@ -1,0 +1,17 @@
+
+<a>{{ postdetail?.post }} </a><br/>
+<div *ngIf="postdetail?.imgURL">
+<img src="{{ postdetail?.imgURL}}" width="250" height="250"/>
+</div>
+
+<ul>
+    <li *ngFor = "let comment of comments"> {{ comment?.comment  }} | {{ comment.timestamp | date }} {{  comment.timestamp | timeAgo  }} </li>
+</ul>
+
+<form [formGroup] ="commentForm" (ngSubmit)="onCommentSubmit(commentForm.value);" class="form-horizontal"> 
+<textarea cols="5" rows="6" class="form-control" formControlName ="comment"></textarea>
+<button type="submit" class="btn btn-primary">Add Comment</button>
+</form>
+
+
+    

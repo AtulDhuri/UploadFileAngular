@@ -1,0 +1,84 @@
+  
+  <form [formGroup]="registerForm" class="form-horizontal" (ngSubmit)="register(registerForm.value)" >
+  <div class="form-group">
+    <label>User Email:</label>
+    <input type="email" formControlName="userEmail" class="form-control"/>  
+    <div *ngIf="registerForm.get('userEmail').errors">
+        <div *ngIf="registerForm.get('userEmail').touched  && registerForm.get('userEmail').errors.required"><strong class="text-danger">Email is required</strong></div> 
+        <div *ngIf="registerForm.get('userEmail').touched  && registerForm.get('userEmail').errors.email"><strong class="text-danger">Email must be a valid email address</strong></div>
+    </div>  
+  </div>
+  
+  <div class="form-group">
+      <label>Mobile Number:</label>
+      <input type="text" formControlName="mobileNumber" class="form-control" minlength="10" maxlength="12"  pattern="[789][0-9]{9}" />
+      <div *ngIf="registerForm.get('mobileNumber').errors">
+          <div *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').errors.required">
+            <strong class="text-danger"> Mobile Number is mandatory</strong> 
+          </div>
+          <div *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').errors.minlength">
+            <strong class="text-danger"> Mobile Number must be of atleast 10 digits</strong> 
+        </div>
+        <div *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').errors.maxlength">
+            <strong class="text-danger"> Mobile Number must not be of more than 12 digits</strong> 
+        </div>
+        <div *ngIf="registerForm.get('mobileNumber').touched && registerForm.get('mobileNumber').errors.pattern">
+            <strong class="text-danger"> Mobile Number invalid format</strong> 
+        </div>
+      </div>    
+  </div>
+    <div class="form-group">
+        <label>Password:</label>
+        <input type="password" formControlName="password" class="form-control" />    
+        <div *ngIf="registerForm.get('password').errors">
+            <div *ngIf="registerForm.get('password').touched && registerForm.get('password').errors.required">
+                <strong class="text-danger">Password is mandatory</strong>
+            </div>
+            <div *ngIf="registerForm.get('password').touched && registerForm.get('password').errors.pattern">
+                <strong class="text-danger">Password must contain Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</strong>                
+            </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+          <label> Confirm Password:</label>
+          <input type="password" formControlName ="confirmPassword" class="form-control"/>
+          <div *ngIf="registerForm.get('confirmPassword').touched && registerForm.errors?.notSame">
+                <strong class="text-danger">Password mismatch</strong>                
+          </div>    
+     </div>
+    
+    <div formGroupName="area">
+      <div class="form-group">
+      <label> Street:</label>
+      <input type="text" formControlName ="street" class="form-control" />
+      <div *ngIf="registerForm.get('area.street').errors">
+        <div *ngIf="registerForm.get('area.street').touched && registerForm.get('area.street').errors.required">
+            <strong class="text-danger">Street is mandatory</strong>
+        </div>        
+     </div>    
+    </div>
+     
+    <div class="form-group">
+      <label> Landmark:</label>
+      <input type="text" formControlName ="landmark" class="form-control" />
+      <div *ngIf="registerForm.get('area.landmark').errors">
+        <div *ngIf="registerForm.get('area.landmark').touched && registerForm.get('area.landmark').errors.required">
+            <strong class="text-danger">Landmark is mandatory</strong>
+        </div>        
+      </div>      
+    </div>
+    <div class="form-group">
+      <label> Pincode</label>
+      <input type="text" formControlName ="pincode" class="form-control" />
+      <div *ngIf="registerForm.get('area.pincode').errors">
+        <div *ngIf="registerForm.get('area.pincode').touched && registerForm.get('area.pincode').errors.required">
+            <strong class="text-danger">Pincode is mandatory</strong>
+        </div>        
+    </div>     
+    </div>
+    </div>
+     <button type="submit">Create User</button>     
+    </form>
+
+

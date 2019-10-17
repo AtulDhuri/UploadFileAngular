@@ -1,0 +1,7 @@
+.has-danger{
+    border-color: red !important;
+}
+
+.has-success{
+    border-color: #28a745 !important;
+}

@@ -1,0 +1,32 @@
+<div class="container">
+  <!--<app-templatedriven></app-templatedriven>-->
+  <!--  <app-modeldriven></app-modeldriven>-->
+ <!--<app-register></app-register>-->
+   <!-- <app-login></app-login>-->
+  
+<nav class="navbar navbar-expand-sm bg-dark" >
+    <ul class="navbar-nav">
+      <li class="nav-item" *ngIf="!isLogged">
+          <a class="nav-link" routerLink="/login">Login</a>&nbsp; 
+      </li>      
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/register" *ngIf="!isLogged">Register</a>&nbsp;
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/templatedriven" *ngIf="!isLogged">Template</a>&nbsp;
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="/modeldriven" *ngIf="isLogged">ModelDriven</a>&nbsp;
+      </li>
+      <li class="nav-item" *ngIf="isLogged">
+        <a class="nav-link" routerLink="/post">Upload Post</a>&nbsp; 
+      </li>
+      <li class="nav-item" *ngIf="isLogged"> 
+        <a class="nav-link" (click)="logout()" routerLink="/login">LogOut</a>
+      </li>          
+    </ul>
+  </nav>
+
+<router-outlet></router-outlet>
+
+</div>

@@ -1,0 +1,53 @@
+<form [formGroup] = "postForm" (ngSubmit)="onPostSubmit(postForm.value);"  class="form-horizontal">
+  <div class="form-group">
+    <input type="text" class="form-control" formControlName ="post" placeholder="Update Status"/>
+  </div>
+
+  
+    <div class="card">
+      <div class="card-header">
+        Image upload
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Select a file for upload:</h5>
+        <input type="file" (change)="selectImage($event)" accept=".png,.jpg" />
+      </div>
+      <!-- <progress max="100" [value]="(uploadProgress | async)"></progress> -->
+    </div>
+   
+    <div *ngIf="downloadURL">
+        <img src="{{ downloadURL }}" width="100" height="100" />
+      </div>
+  <br/>
+  <div class="form-group">
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<div *ngIf="allpost?.length" class="row">
+  <div  class="col-md-12">
+    <ul >
+      <h1>Posts</h1>  
+
+      <li *ngFor="let data of allpost" (click)="onPostSelect(data)" class="nolist">
+        <a routerLink="/comment/{{data.key}}"> {{ data.post }}   </a> is posted by
+      <i>post id </i><strong> {{data.key }} on {{data.timestamp | timeAgo}}</strong>
+      <br/>
+      <div *ngIf="data.imgURL">
+          <img src= "{{ data?.imgURL}}" width="500" height ="500"/>
+        </div>
+        <br/>
+     
+      <button *ngIf="data?.fans && data?.fans[currentUser?.uid] else likeBtn" (click) ="unLikePost(data)" class="btn btn-primary float-right">Unlike</button>
+      <ng-template #likeBtn>
+        <button (click)="likePost(data)"  class="btn btn-primary float-right"> Like</button>
+      </ng-template>
+      <br/><br/>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+    
+
